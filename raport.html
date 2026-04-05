@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🎉 Raport Kuis Matematika TK - SELAMAT! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f9e7b3 0%, #f5cda0 100%);
+            font-family: 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI Emoji', cursive, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .raport-container {
+            max-width: 800px;
+            width: 100%;
+            background: #fffef7;
+            border-radius: 68px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 4px solid #ffcd7e;
+            animation: bounceIn 0.5s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            80% { transform: scale(1.02); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes starGlow {
+            0%, 100% { text-shadow: 0 0 5px gold; }
+            50% { text-shadow: 0 0 20px #ffdd00; }
+        }
+
+        .header-riang {
+            background: linear-gradient(135deg, #ff9a3c, #ff6f3c);
+            padding: 30px 20px 25px;
+            text-align: center;
+            color: white;
+            border-bottom-left-radius: 48px;
+            border-bottom-right-radius: 48px;
+        }
+
+        .header-riang h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            text-shadow: 4px 4px 0 #c13b00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .trophy {
+            font-size: 3rem;
+            animation: float 1.5s ease-in-out infinite;
+        }
+
+        .content {
+            padding: 35px 28px 40px;
+        }
+
+        /* Kartu Skor */
+        .score-card {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            border-radius: 60px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 0 #0a3b0a;
+        }
+
+        .score-label {
+            color: #ffd966;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+        }
+
+        .score-number {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #ffeb3b;
+            text-shadow: 4px 4px 0 #b45f1b;
+            line-height: 1;
+            margin: 10px 0;
+        }
+
+        .score-max {
+            color: #ffd966;
+            font-size: 1.2rem;
+        }
+
+        /* Bintang Rating */
+        .stars-rating {
+            background: #fff0db;
+            border-radius: 50px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 2px dashed #ffac5c;
+        }
+
+        .stars {
+            font-size: 3rem;
+            letter-spacing: 10px;
+            margin: 10px 0;
+        }
+
+        .star-glow {
+            animation: starGlow 0.8s ease-in-out infinite;
+        }
+
+        /* Kartu Evaluasi */
+        .evaluation-card {
+            background: #e8f5e9;
+            border-radius: 48px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 15px solid #4caf50;
+        }
+
+        .evaluation-title {
+            font-size: 1.8rem;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .evaluation-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #3e2723;
+        }
+
+        /* Pesan Khusus */
+        .special-message {
+            background: #fff3e0;
+            border-radius: 48px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 3px solid #ffb74d;
+        }
+
+        .special-message p {
+            font-size: 1.2rem;
+            color: #bf360c;
+        }
+
+        /* Tombol Aksi */
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-play-again {
+            background: #ff914d;
+            border: none;
+            padding: 16px 28px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 0 #b1410c;
+            transition: 0.05s linear;
+            text-decoration: none;
+        }
+
+        .btn-home {
+            background: #4caf50;
+            border: none;
+            padding: 16px 28px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 0 #2e6b2f;
+            transition: 0.05s linear;
+            text-decoration: none;
+        }
+
+        .btn-play-again:active, .btn-home:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #b1410c;
+        }
+
+        .btn-home:active {
+            box-shadow: 0 4px 0 #2e6b2f;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 20px;
+            color: #b97f48;
+            border-top: 2px dashed #ffcd7e;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 550px) {
+            .score-number { font-size: 3.5rem; }
+            .stars { font-size: 2rem; letter-spacing: 5px; }
+            .evaluation-text { font-size: 1rem; }
+            .btn-play-again, .btn-home { padding: 12px 20px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="raport-container" id="raportContainer">
+    <div class="header-riang">
+        <h1>
+            <span class="trophy">🏆</span>
+            RAPORT KUIS MATEMATIKA
+            <span class="trophy">🏆</span>
+        </h1>
+        <p style="font-size: 1.2rem; margin-top: 10px;">✨ Hebat! Kamu sudah menyelesaikan semua soal! ✨</p>
+    </div>
+
+    <div class="content">
+        <!-- Kartu Skor -->
+        <div class="score-card">
+            <div class="score-label">⭐ SKOR AKHIRMU ⭐</div>
+            <div class="score-number" id="finalScore">0</div>
+            <div class="score-max">dari 30 poin</div>
+        </div>
+
+        <!-- Bintang Rating -->
+        <div class="stars-rating">
+            <div style="font-size: 1.2rem; color: #b45f1b;">🏅 PEROLEHAN BINTANG 🏅</div>
+            <div class="stars" id="starsDisplay">⭐⭐⭐⭐⭐</div>
+            <div id="ratingText" style="font-size: 1rem; color: #ff8c42; font-weight: bold;"></div>
+        </div>
+
+        <!-- Kartu Evaluasi (copywriting asik) -->
+        <div class="evaluation-card" id="evaluationCard">
+            <div class="evaluation-title">
+                <span>📝</span> EVALUASI
+            </div>
+            <div class="evaluation-text" id="evaluationText">
+                <!-- akan diisi JS -->
+            </div>
+        </div>
+
+        <!-- Pesan Khusus -->
+        <div class="special-message" id="specialMessage">
+            <p>🎈🎉 Selamat ya! Kamu hebat! 🎉🎈</p>
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="action-buttons">
+            <a href="index.html" class="btn-home">🏠 Kembali ke Awal</a>
+            <button class="btn-play-again" id="resetAndPlayBtn">🔄 Main Lagi dari Awal</button>
+        </div>
+    </div>
+    <footer>
+        💖 Terima kasih sudah belajar matematika dengan gembira! 💖<br>
+        Tetaplah semangat belajar, ya!
+    </footer>
+</div>
+
+<script>
+    // Key localStorage
+    const STORAGE_SCORE_KEY = "tkMathGlobalScore";
+    const STORAGE_COMPLETED_KEY = "tkMathCompletedFlags";
+
+    // Fungsi untuk mendapatkan skor global
+    function getGlobalScore() {
+        let score = localStorage.getItem(STORAGE_SCORE_KEY);
+        if (score === null) return 0;
+        return parseInt(score, 10);
+    }
+
+    // Fungsi untuk mendapatkan jumlah soal yang sudah dikerjakan benar
+    function getCompletedCount() {
+        let completed = localStorage.getItem(STORAGE_COMPLETED_KEY);
+        if (!completed) return 0;
+        let arr = JSON.parse(completed);
+        return arr.length;
+    }
+
+    // Fungsi untuk menampilkan bintang berdasarkan skor
+    function getStars(score) {
+        if (score >= 27) return { stars: "⭐⭐⭐⭐⭐", text: "LUAR BIASA! 🌟🌟🌟🌟🌟" };
+        if (score >= 24) return { stars: "⭐⭐⭐⭐", text: "HEBAT SEKALI! 🌟🌟🌟🌟" };
+        if (score >= 20) return { stars: "⭐⭐⭐", text: "BAGUS! Terus semangat! 🌟🌟🌟" };
+        if (score >= 15) return { stars: "⭐⭐", text: "CUKUP BAGUS! Ayo lebih giat lagi! 🌟🌟" };
+        if (score >= 10) return { stars: "⭐", text: "MULAI BAGUS! Belajar lagi yuk supaya lebih hebat! 🌟" };
+        return { stars: "⭐", text: "TETAP SEMANGAT! Coba lagi, pasti bisa lebih baik! 💪" };
+    }
+
+    // Fungsi untuk mendapatkan evaluasi berdasarkan skor
+    function getEvaluation(score) {
+        if (score >= 27) {
+            return "🎉✨ WOW! Kamu juara matematika! ✨🎉<br><br>" +
+                   "Kamu menjawab hampir semua soal dengan benar! Kamu pintar sekali dalam berhitung, membandingkan, dan melihat pola. " +
+                   "Pertahankan semangat belajarmu, ya! Kamu pasti jadi anak yang hebat! 🌟";
+        }
+        if (score >= 24) {
+            return "🎈📚 HEBAT! Kamu sangat pintar! 📚🎈<br><br>" +
+                   "Kamu sudah menguasai banyak soal matematika. Sedikit lagi pasti bisa sempurna! " +
+                   "Coba latihan lagi soal-soal yang masih salah, ya. Kamu pasti bisa jadi juara! 💪";
+        }
+        if (score >= 20) {
+            return "👍 BAGUS! Kamu sudah cukup hebat! 👍<br><br>" +
+                   "Kamu sudah bisa menjawab banyak soal dengan benar. Ayo coba lagi soal-soal yang masih salah, " +
+                   "nanti kamu akan semakin pintar! Jangan menyerah, ya! 🧸";
+        }
+        if (score >= 15) {
+            return "😊 CUKUP BAGUS! Kamu sudah berusaha dengan baik! 😊<br><br>" +
+                   "Masih ada beberapa soal yang perlu dilatih lagi. Tapi tidak apa-apa, yang penting kamu sudah mau belajar! " +
+                   "Coba main lagi dan perbaiki jawabanmu, pasti bisa lebih baik! 🎨";
+        }
+        if (score >= 10) {
+            return "🌱 KAMU HEBAT KARENA SUDAH MAU BELAJAR! 🌱<br><br>" +
+                   "Walaupun masih banyak yang salah, kamu sudah berani mencoba! Itu yang paling penting. " +
+                   "Ayo main lagi dan pelajari petunjuk dari setiap soal. Pasti kamu akan semakin pintar! 🚀";
+        }
+        return "💪 TETAP SEMANGAT, YA! 💪<br><br>" +
+               "Belajar matematika itu menyenangkan! Kamu sudah berhasil menyelesaikan semua 30 soal. " +
+               "Coba main lagi dari awal, pelajari petunjuk di setiap jawaban salah. " +
+               "Dengan latihan, kamu pasti jadi jago matematika! Kamu hebat karena tidak menyerah! 🌈";
+    }
+
+    // Fungsi untuk mendapatkan pesan khusus (copywriting asik)
+    function getSpecialMessage(score) {
+        if (score === 30) {
+            return "🎉🎊🏆 SEMPURNA! Skor maksimal! Kamu benar-benar luar biasa! 🏆🎊🎉<br>⭐ Bintang 5 untukmu! ⭐";
+        }
+        if (score >= 27) {
+            return "🎉🌟 Hebat sekali! Kamu hebat dalam matematika! 🌟🎉<br>Teruslah belajar, ya!";
+        }
+        if (score >= 20) {
+            return "📚✨ Bagus! Kamu sudah pintar. Ayo tingkatkan lagi! ✨📚<br>Kamu pasti bisa dapat skor sempurna!";
+        }
+        if (score >= 15) {
+            return "🍭 Semangat! Belajar lagi yuk supaya makin jago! 🍭<br>Kamu pasti bisa lebih baik lagi!";
+        }
+        if (score >= 10) {
+            return "🧸 Jangan menyerah! Coba lagi, pasti bisa! 🧸<br>Setiap kesalahan adalah pelajaran berharga!";
+        }
+        return "🌈 Kamu hebat karena sudah mau belajar! Ayo coba lagi! 🌈<br>Dengan latihan, kamu pasti jadi juara matematika!";
+    }
+
+    // Fungsi untuk memainkan suara selamat (nada bahagia)
+    function playCelebrationSound() {
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Nada pertama
+            const osc1 = audioCtx.createOscillator();
+            const gain1 = audioCtx.createGain();
+            osc1.connect(gain1);
+            gain1.connect(audioCtx.destination);
+            osc1.type = "sine";
+            osc1.frequency.value = 523.25; // C
+            gain1.gain.value = 0.2;
+            osc1.start();
+            gain1.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.3);
+            osc1.stop(audioCtx.currentTime + 0.3);
+            
+            // Nada kedua
+            setTimeout(() => {
+                const osc2 = audioCtx.createOscillator();
+                const gain2 = audioCtx.createGain();
+                osc2.connect(gain2);
+                gain2.connect(audioCtx.destination);
+                osc2.type = "sine";
+                osc2.frequency.value = 659.25; // E
+                gain2.gain.value = 0.2;
+                osc2.start();
+                gain2.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.3);
+                osc2.stop(audioCtx.currentTime + 0.3);
+            }, 150);
+            
+            // Nada ketiga
+            setTimeout(() => {
+                const osc3 = audioCtx.createOscillator();
+                const gain3 = audioCtx.createGain();
+                osc3.connect(gain3);
+                gain3.connect(audioCtx.destination);
+                osc3.type = "sine";
+                osc3.frequency.value = 783.99; // G
+                gain3.gain.value = 0.2;
+                osc3.start();
+                gain3.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.4);
+                osc3.stop(audioCtx.currentTime + 0.4);
+            }, 300);
+            
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        } catch(e) {
+            console.log("Web Audio API error", e);
+        }
+    }
+
+    // Fungsi reset dan main lagi
+    function resetAndPlayAgain() {
+        if (confirm("Yakin mau mulai dari awal? Semua skor dan jawaban akan direset.")) {
+            localStorage.setItem(STORAGE_SCORE_KEY, "0");
+            localStorage.removeItem(STORAGE_COMPLETED_KEY);
+            window.location.href = "index.html";
+        }
+    }
+
+    // Load dan tampilkan semua data
+    function loadRaport() {
+        const finalScore = getGlobalScore();
+        const completedCount = getCompletedCount();
+        const stars = getStars(finalScore);
+        
+        // Tampilkan skor
+        document.getElementById("finalScore").innerText = finalScore;
+        
+        // Tampilkan bintang
+        const starsDisplay = document.getElementById("starsDisplay");
+        starsDisplay.innerHTML = stars.stars;
+        document.getElementById("ratingText").innerText = stars.text;
+        
+        // Efek animasi bintang jika skor tinggi
+        if (finalScore >= 27) {
+            starsDisplay.classList.add("star-glow");
+        }
+        
+        // Tampilkan evaluasi
+        document.getElementById("evaluationText").innerHTML = getEvaluation(finalScore);
+        
+        // Tampilkan pesan khusus
+        document.getElementById("specialMessage").innerHTML = `<p>${getSpecialMessage(finalScore)}</p>`;
+        
+        // Mainkan suara selamat jika skor bagus
+        if (finalScore >= 20) {
+            setTimeout(() => {
+                playCelebrationSound();
+            }, 500);
+        }
+        
+        // Ubah warna kartu evaluasi berdasarkan skor
+        const evalCard = document.getElementById("evaluationCard");
+        if (finalScore >= 27) {
+            evalCard.style.borderLeftColor = "#ffd700";
+            evalCard.style.background = "#fff8e1";
+        } else if (finalScore >= 20) {
+            evalCard.style.borderLeftColor = "#4caf50";
+        } else if (finalScore >= 15) {
+            evalCard.style.borderLeftColor = "#ff9800";
+        } else {
+            evalCard.style.borderLeftColor = "#f44336";
+        }
+    }
+    
+    // Event listener
+    document.addEventListener("DOMContentLoaded", () => {
+        loadRaport();
+        
+        const resetBtn = document.getElementById("resetAndPlayBtn");
+        if (resetBtn) {
+            resetBtn.addEventListener("click", resetAndPlayAgain);
+        }
+        
+        // Aktifkan audio context dengan interaksi user
+        const enableAudio = () => {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) {
+                const ctx = new AudioContext();
+                if (ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+            }
+            document.removeEventListener('click', enableAudio);
+            document.removeEventListener('touchstart', enableAudio);
+        };
+        document.addEventListener('click', enableAudio);
+        document.addEventListener('touchstart', enableAudio);
+    });
+</script>
+</body>
+</html>
