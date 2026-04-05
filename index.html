@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🎈 Kuis Matematika Seru untuk TK 🎈</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* biar anak gak mudah ngeblok teks */
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f9e7b3 0%, #f5cda0 100%);
+            font-family: 'Comic Neue', 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI Emoji', cursive, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Container utama */
+        .landing-card {
+            max-width: 700px;
+            width: 100%;
+            background: #fffef7;
+            border-radius: 72px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), 0 8px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: 0.2s;
+            border: 4px solid #ffcd7e;
+        }
+
+        /* Header lucu */
+        .hero {
+            background: #ffb347;
+            background: linear-gradient(135deg, #ff9a3c, #ff6f3c);
+            padding: 30px 20px 20px;
+            text-align: center;
+            color: white;
+            border-bottom-left-radius: 48px;
+            border-bottom-right-radius: 48px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            text-shadow: 4px 4px 0 #c13b00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            background: #ffdd99;
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 60px;
+            color: #b45f1b;
+            font-weight: bold;
+            margin-top: 16px;
+        }
+
+        /* area konten */
+        .content {
+            padding: 32px 28px 40px;
+        }
+
+        .petunjuk-box {
+            background: #fff0db;
+            border-radius: 48px;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            border: 2px dashed #ffac5c;
+        }
+
+        .petunjuk-box h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.9rem;
+            color: #d2691e;
+            margin-bottom: 15px;
+        }
+
+        .petunjuk-list {
+            list-style: none;
+            font-size: 1.2rem;
+            line-height: 2rem;
+        }
+
+        .petunjuk-list li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 6px 15px;
+            border-radius: 50px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .score-global {
+            background: #2e7d32;
+            background: linear-gradient(95deg, #2b7a2b, #1f5a1f);
+            border-radius: 60px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            color: gold;
+            font-weight: bold;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            border: 2px solid #ffd966;
+            box-shadow: 0 5px 0 #0a3b0a;
+        }
+
+        .score-global span:first-child {
+            font-size: 1.2rem;
+            background: #ffefb9;
+            padding: 5px 12px;
+            border-radius: 40px;
+            color: #2c5e1a;
+        }
+
+        .score-global span:last-child {
+            font-size: 2.1rem;
+            background: #f9b81b;
+            padding: 0 20px;
+            border-radius: 60px;
+            color: #2c2b1f;
+        }
+
+        .btn-start {
+            background: #ff914d;
+            border: none;
+            width: 100%;
+            padding: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: inherit;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            transition: 0.1s linear;
+            box-shadow: 0 12px 0 #b1410c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn-start:active {
+            transform: translateY(4px);
+            box-shadow: 0 6px 0 #b1410c;
+        }
+
+        .btn-reset-score {
+            background: #ffb882;
+            border: none;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            color: #5c2e0e;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            margin-top: 20px;
+            color: #b97f48;
+        }
+
+        @media (max-width: 550px) {
+            .hero h1 { font-size: 2rem; }
+            .content { padding: 20px; }
+            .petunjuk-list li { font-size: 0.95rem; }
+            .btn-start { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="landing-card" id="landingPage">
+    <div class="hero">
+        <h1>
+            🧸 KUIS MATEMATIKA 🧸
+            <span>✨TK✨</span>
+        </h1>
+        <p>⭐ Belajar jadi seru! ⭐</p>
+    </div>
+
+    <div class="content">
+        <div class="petunjuk-box">
+            <h2>📖 Petunjuk Asyik</h2>
+            <ul class="petunjuk-list">
+                <li>🎧 1. Setiap soal punya suara & petunjuk lucu</li>
+                <li>✅ 2. Pilih jawaban A, B, atau C</li>
+                <li>🎉 3. Kalau benar ➕ 1 poin & lanjut ke soal berikutnya</li>
+                <li>💡 4. Kalau salah ❌ dapat petunjuk, tapi gak dapat skor</li>
+                <li>📜 5. Di akhir 30 soal dapat RAPORT HEBAT!</li>
+                <li>🔄 6. Tombol RESET SCORE bisa mulai dari 0 lagi</li>
+                <li>🎲 7. Setiap soal beda-beda & acak supaya gak bosan!</li>
+            </ul>
+        </div>
+
+        <!-- GLOBAL SCORE (akan tersimpan di localStorage) -->
+        <div class="score-global">
+            <span>🏆 SKOR GLOBALMU 🏆</span>
+            <span id="globalScoreDisplay">0</span>
+        </div>
+
+        <button class="btn-start" id="startQuizBtn">
+            🚀 MULAI KUIS 🚀
+        </button>
+
+        <button class="btn-reset-score" id="resetGlobalScoreBtn">
+            🔄 RESET SKOR (Mulai dari 0) 🔄
+        </button>
+        <footer>
+            💡 tips: nanti setelah selesai semua soal, kamu lihat raport keren!
+        </footer>
+    </div>
+</div>
+
+<script>
+    // ============== GLOBAL SCORE MANAGER ==============
+    // Key untuk menyimpan skor di localStorage (agar bisa dipakai di semua file soal-1.html sampai soal-30.html)
+    const STORAGE_SCORE_KEY = "tkMathGlobalScore";
+    const STORAGE_COMPLETED_KEY = "tkMathCompletedFlags";  // menyimpan array soal yang sudah dikerjakan (opsional, untuk raport)
+    
+    // Fungsi untuk mendapatkan skor global
+    function getGlobalScore() {
+        let score = localStorage.getItem(STORAGE_SCORE_KEY);
+        if (score === null) {
+            return 0;
+        }
+        return parseInt(score, 10);
+    }
+
+    // Fungsi untuk menyimpan skor
+    function setGlobalScore(score) {
+        localStorage.setItem(STORAGE_SCORE_KEY, score);
+        updateScoreDisplay();
+    }
+
+    // Menambah skor
+    function addScore(points) {
+        let current = getGlobalScore();
+        let newScore = current + points;
+        setGlobalScore(newScore);
+        return newScore;
+    }
+
+    // Reset skor menjadi 0
+    function resetGlobalScore() {
+        setGlobalScore(0);
+        // Opsional: hapus data completed agar bisa main ulang fresh
+        localStorage.removeItem(STORAGE_COMPLETED_KEY);
+        // Beri efek notifikasi kecil
+        alert("✨ Skor direset ke 0! Selamat bermain lagi ya! ✨");
+    }
+
+    // Update tampilan skor di halaman ini
+    function updateScoreDisplay() {
+        const displaySpan = document.getElementById("globalScoreDisplay");
+        if (displaySpan) {
+            let currentScore = getGlobalScore();
+            displaySpan.innerText = currentScore;
+        }
+    }
+
+    // Fungsi untuk menandai soal tertentu sudah dijawab (biar tidak curang ganti-ganti file? opsional)
+    // Tapi untuk keperluan sederhana, kita hanya perlu skor global, dan nanti soal-1.html sampai 30.html
+    // akan membaca skor dan menyimpan skor baru setelah jawaban benar.
+    // Juga akan menyimpan status soal yang sudah dikerjakan agar tidak bisa diulang jawab lagi? 
+    // Karena kita ingin fair, tapi untuk anak TK kita buat sistem: setelah jawab benar di soal-1.html,
+    // otomatis pindah ke soal-2.html, dan tidak bisa kembali ke soal sebelumnya dengan skor bertambah dua kali.
+    // Kita akan implementasi: tiap file soal akan mengecek apakah soal itu sudah pernah dijawab benar.
+    // Kalau sudah pernah benar -> langsung redirect ke soal berikutnya? atau tampilkan pesan.
+    // Biar lebih rapi, kita buat sistem "completedSoal" di localStorage.
+    
+    // === FUNGSI UNTUK CEK APAKAH SOAL SUDAH PERNAH DIJAWAB BENAR ===
+    function isSoalCompleted(soalNumber) {
+        let completed = localStorage.getItem(STORAGE_COMPLETED_KEY);
+        if (!completed) return false;
+        let arr = JSON.parse(completed);
+        return arr.includes(soalNumber);
+    }
+
+    // Menandai soal selesai (benar)
+    function setSoalCompleted(soalNumber) {
+        let completed = localStorage.getItem(STORAGE_COMPLETED_KEY);
+        let arr = completed ? JSON.parse(completed) : [];
+        if (!arr.includes(soalNumber)) {
+            arr.push(soalNumber);
+            localStorage.setItem(STORAGE_COMPLETED_KEY, JSON.stringify(arr));
+        }
+    }
+    
+    // =========== INITIALISASI HALAMAN ===========
+    updateScoreDisplay();
+
+    // Tombol reset skor
+    const resetBtn = document.getElementById("resetGlobalScoreBtn");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+            resetGlobalScore();
+            // Juga hapus data completed supaya bisa memulai dari awal lagi dengan fresh
+            localStorage.removeItem(STORAGE_COMPLETED_KEY);
+            updateScoreDisplay();
+        });
+    }
+
+    // Tombol mulai kuis: langsung menuju ke soal 1, tapi periksa apakah soal 1 sudah pernah diselesaikan?
+    // jika sudah pernah diselesaikan dan skor penuh? Kita kasih opsi "lanjutkan ke soal berikutnya" atau mulai dari awal.
+    const startBtn = document.getElementById("startQuizBtn");
+    if (startBtn) {
+        startBtn.addEventListener("click", () => {
+            // Cari soal pertama yang belum dikerjakan (belum dijawab benar)
+            let firstUnlocked = 1;
+            for (let i = 1; i <= 30; i++) {
+                if (!isSoalCompleted(i)) {
+                    firstUnlocked = i;
+                    break;
+                }
+            }
+            // Jika semua soal sudah selesai (sudah 30 selesai)
+            if (firstUnlocked === 31) {
+                alert("🎉 Wah! Kamu sudah menyelesaikan semua 30 soal! 🎉\nKlik RESET SKOR jika ingin bermain dari awal lagi.");
+                // Arahkan ke halaman raport? Tapi untuk sekarang kita bisa tetap ke soal-1 tapi peringatan.
+                // Agar tidak error, arahkan ke raport buatan nanti.
+                if(confirm("Kamu sudah juara! Lihat raport dulu? nanti akan diarahkan ke evaluasi.")){
+                    window.location.href = "raport.html";
+                } else {
+                    // tetap ke soal-1 tapi akan dicegah penambahan skor dobel.
+                    window.location.href = "soal-1.html";
+                }
+                return;
+            }
+            // Arahkan ke soal yang belum dikerjakan
+            window.location.href = `soal-${firstUnlocked}.html`;
+        });
+    }
+
+    // Agar saat di-load, kita kasih semangat
+    console.log("Landing page siap! Skor saat ini:", getGlobalScore());
+</script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🎈 Soal 1 - Kuis Matematika TK 🎈</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #b8e1fc 0%, #9ac9f0 100%);
+            font-family: 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI Emoji', cursive, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Container soal */
+        .quiz-container {
+            max-width: 750px;
+            width: 100%;
+            background: #fffef7;
+            border-radius: 68px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 4px solid #ffcd7e;
+            animation: bounceIn 0.4s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Header soal */
+        .quiz-header {
+            background: linear-gradient(135deg, #ff8c42, #ff6b35);
+            padding: 20px 25px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .badge-soal {
+            background: #ffdd99;
+            color: #c13b00;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .score-badge {
+            background: #2e7d32;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Area pertanyaan */
+        .question-area {
+            padding: 35px 25px 20px;
+            text-align: center;
+        }
+
+        .question-text {
+            font-size: 2rem;
+            background: #fef3c7;
+            padding: 25px 15px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            border: 3px solid #ffb347;
+            box-shadow: 0 8px 0 #e0a800;
+        }
+
+        /* Pilihan jawaban */
+        .options-area {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 0 25px;
+            margin-bottom: 30px;
+        }
+
+        .option-btn {
+            background: #f0f0f0;
+            border: 3px solid #ffb347;
+            border-radius: 60px;
+            padding: 16px 20px;
+            font-size: 1.5rem;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.08s linear;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+        }
+
+        .option-btn:active {
+            transform: scale(0.97);
+        }
+
+        .option-prefix {
+            background: #ffb347;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        /* Feedback */
+        .feedback-area {
+            background: #fff1d6;
+            margin: 0 25px 20px;
+            border-radius: 48px;
+            padding: 15px 20px;
+            min-height: 85px;
+            font-size: 1.2rem;
+            border-left: 12px solid #ff914d;
+        }
+
+        /* Tombol next */
+        .next-area {
+            padding: 0 25px 35px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-next {
+            background: #4caf50;
+            border: none;
+            padding: 16px 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 0 #2e6b2f;
+            transition: 0.05s linear;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .btn-next.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .btn-next:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #2e6b2f;
+        }
+
+        .btn-reset-soal {
+            background: #ffa559;
+            margin-top: 10px;
+            width: auto;
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            border: none;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            padding-bottom: 15px;
+            color: #b97f48;
+        }
+
+        @media (max-width: 550px) {
+            .question-text { font-size: 1.4rem; }
+            .option-btn { font-size: 1.2rem; padding: 12px; }
+            .option-prefix { width: 40px; height: 40px; font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container" id="quizContainer">
+    <div class="quiz-header">
+        <div class="badge-soal">📖 Soal 1 / 30</div>
+        <div class="score-badge">⭐ Skor: <span id="currentScoreDisplay">0</span></div>
+    </div>
+
+    <div class="question-area">
+        <div class="question-text" id="questionText">
+            🍎🍎🍎 <br> Hitung jumlah apel di atas!
+        </div>
+    </div>
+
+    <div class="options-area" id="optionsArea">
+        <!-- Tombol pilihan A, B, C akan dibuat js -->
+    </div>
+
+    <div class="feedback-area" id="feedbackArea">
+        💡 Klik jawaban dulu ya, Kak!
+    </div>
+
+    <div class="next-area">
+        <button class="btn-next" id="nextBtn">➡️ SOAL BERIKUTNYA ⬅️</button>
+    </div>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button class="btn-reset-soal" id="resetFromSoalBtn">🔄 Reset Skor & Mulai Lagi</button>
+    </div>
+    <footer>
+        🎵 Klik jawaban, dengar suara lucu! Kalau benar dapat poin.
+    </footer>
+</div>
+
+<script>
+    // ======================= DATA SOAL 1 (bisa diacak isi tapi tetap logika sama) =======================
+    // Supaya soal tidak monoton, kita buat variasi soal namun tetap dengan jawaban benar yang sama (konsep hitung 3 apel)
+    // Tapi tetap dalam konteks "jumlah apel = 3". Variasi membuat anak tidak bosan jika reset.
+    const bankSoal1 = [
+        {
+            pertanyaan: "🍎🍎🍎 <br> Hitung jumlah apel di atas!",
+            options: ["2", "3", "4"],
+            jawabanBenar: "3",
+            petunjukSalah: "Coba hitung lagi: satu, dua, tiga. Ada 3 apel 🍎🍎🍎"
+        },
+        {
+            pertanyaan: "🐱🐱🐱 <br> Berapa jumlah kucing?",
+            options: ["2", "3", "4"],
+            jawabanBenar: "3",
+            petunjukSalah: "Ayo hitung kucingnya: 1, 2, 3. Ada 3 kucing!"
+        },
+        {
+            pertanyaan: "⭐️⭐️⭐️ <br> Berapa banyak bintang?",
+            options: ["3", "4", "5"],
+            jawabanBenar: "3",
+            petunjukSalah: "Lihat bintangnya: satu, dua, tiga. Tiga bintang!"
+        }
+    ];
+
+    // Pilih secara acak salah satu variasi soal (agar setiap reset bisa beda)
+    let currentVariant = null;
+
+    // State kuis untuk soal ini
+    let soalTerjawab = false;      // apakah sudah dijawab (benar/salah)
+    let jawabanBenar = false;      // apakah jawaban benar
+    let selectedOptionValue = "";
+    let globalScoreAwal = 0;
+    
+    // Key localStorage
+    const STORAGE_SCORE_KEY = "tkMathGlobalScore";
+    const STORAGE_COMPLETED_KEY = "tkMathCompletedFlags";
+
+    // Fungsi suara (Web Audio API - nada simple, tanpa file eksternal)
+    function playSound(type) {
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.type = "sine";
+            let frequency = type === "correct" ? 880 : 440;
+            let duration = type === "correct" ? 0.4 : 0.6;
+            oscillator.frequency.value = frequency;
+            gainNode.gain.value = 0.3;
+            oscillator.start();
+            gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+            oscillator.stop(audioCtx.currentTime + duration);
+            // biar context tetap aktif
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        } catch(e) {
+            console.log("Web Audio API error (mungkin butuh interaksi user)", e);
+        }
+    }
+
+    // Fungsi global score
+    function getGlobalScore() {
+        let score = localStorage.getItem(STORAGE_SCORE_KEY);
+        if (score === null) return 0;
+        return parseInt(score, 10);
+    }
+
+    function setGlobalScore(score) {
+        localStorage.setItem(STORAGE_SCORE_KEY, score);
+        updateScoreUI();
+    }
+
+    function addScore(points) {
+        let current = getGlobalScore();
+        let newScore = current + points;
+        setGlobalScore(newScore);
+        return newScore;
+    }
+
+    function updateScoreUI() {
+        const scoreSpan = document.getElementById("currentScoreDisplay");
+        if (scoreSpan) {
+            scoreSpan.innerText = getGlobalScore();
+        }
+    }
+
+    // Fungsi untuk menandai soal 1 sudah dikerjakan benar
+    function isSoalCompleted(soalNumber) {
+        let completed = localStorage.getItem(STORAGE_COMPLETED_KEY);
+        if (!completed) return false;
+        let arr = JSON.parse(completed);
+        return arr.includes(soalNumber);
+    }
+
+    function setSoalCompleted(soalNumber) {
+        let completed = localStorage.getItem(STORAGE_COMPLETED_KEY);
+        let arr = completed ? JSON.parse(completed) : [];
+        if (!arr.includes(soalNumber)) {
+            arr.push(soalNumber);
+            localStorage.setItem(STORAGE_COMPLETED_KEY, JSON.stringify(arr));
+        }
+    }
+
+    // Pilih variasi soal secara random
+    function initRandomVariant() {
+        const randomIndex = Math.floor(Math.random() * bankSoal1.length);
+        currentVariant = { ...bankSoal1[randomIndex] };
+    }
+
+    // Render tampilan soal berdasarkan currentVariant
+    function renderSoal() {
+        if (!currentVariant) {
+            initRandomVariant();
+        }
+        const qText = document.getElementById("questionText");
+        qText.innerHTML = currentVariant.pertanyaan;
+        
+        const optionsContainer = document.getElementById("optionsArea");
+        optionsContainer.innerHTML = "";
+        const prefixes = ["A", "B", "C"];
+        currentVariant.options.forEach((opt, idx) => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.setAttribute("data-value", opt);
+            btn.innerHTML = `<span class="option-prefix">${prefixes[idx]}</span> ${opt}`;
+            btn.addEventListener("click", () => handleAnswer(opt, btn));
+            optionsContainer.appendChild(btn);
+        });
+        
+        // Reset state
+        soalTerjawab = false;
+        jawabanBenar = false;
+        const nextBtn = document.getElementById("nextBtn");
+        nextBtn.classList.remove("active");
+        const feedbackDiv = document.getElementById("feedbackArea");
+        feedbackDiv.innerHTML = "🎈 Klik jawaban yang benar ya! 🎈";
+        
+        // highlight semua tombol kembali normal (hilangkan background hijau/merah)
+        document.querySelectorAll(".option-btn").forEach(btn => {
+            btn.style.background = "white";
+            btn.style.border = "3px solid #ffb347";
+        });
+    }
+    
+    function handleAnswer(selectedVal, btnElement) {
+        if (soalTerjawab) {
+            // sudah menjawab, tidak boleh ubah lagi
+            const feedbackDiv = document.getElementById("feedbackArea");
+            feedbackDiv.innerHTML = "⚠️ Kamu sudah menjawab! Klik 'Soal Berikutnya' ya. ⚠️";
+            return;
+        }
+        
+        const isCorrect = (selectedVal === currentVariant.jawabanBenar);
+        const feedbackDiv = document.getElementById("feedbackArea");
+        
+        // efek visual pada tombol yang dipilih
+        document.querySelectorAll(".option-btn").forEach(btn => {
+            btn.style.pointerEvents = "none";
+        });
+        
+        if (isCorrect) {
+            // MAIN SOUND BENAR
+            playSound("correct");
+            jawabanBenar = true;
+            // Tambah skor +1 (hanya jika belum pernah menyelesaikan soal ini sebelumnya)
+            // Cek apakah soal 1 sudah pernah diselesaikan (benar sebelumnya)
+            if (!isSoalCompleted(1)) {
+                addScore(1);
+                setSoalCompleted(1);
+                feedbackDiv.innerHTML = `✅✅✅ BENAR SEKALI! ✅✅✅ <br> ${currentVariant.jawabanBenar} itu jawabannya. +1 poin!`;
+            } else {
+                // Sudah pernah benar sebelumnya, tidak menambah skor lagi (fair)
+                feedbackDiv.innerHTML = `🎉 Jawabanmu BENAR! Tapi kamu sudah pernah menjawab soal ini sebelumnya, jadi tidak dapat poin tambahan. Lanjut yuk! 🎉`;
+            }
+            // Ubah background tombol jadi hijau
+            btnElement.style.background = "#b9f6ca";
+            btnElement.style.border = "3px solid #2e7d32";
+        } else {
+            // JAWABAN SALAH
+            playSound("wrong");
+            jawabanBenar = false;
+            // Tampilkan petunjuk dari variabel
+            feedbackDiv.innerHTML = `❌ Aduh, kurang tepat! ❌ <br> 💡 ${currentVariant.petunjukSalah} 💡 <br> Coba ingat-ingat ya, lain kali semangat!`;
+            btnElement.style.background = "#ffcdd2";
+            btnElement.style.border = "3px solid #c62828";
+        }
+        
+        soalTerjawab = true;
+        // Aktifkan tombol next
+        const nextBtn = document.getElementById("nextBtn");
+        nextBtn.classList.add("active");
+        
+        // update score UI
+        updateScoreUI();
+    }
+    
+    // Fungsi untuk pindah ke soal berikutnya
+    function goToNextSoal() {
+        if (!soalTerjawab) {
+            alert("Kak, pilih jawaban dulu yuk!");
+            return;
+        }
+        // Cek apakah sudah menyelesaikan soal 1, dan skor sudah update.
+        // Soal berikutnya adalah soal-2.html
+        window.location.href = "soal-2.html";
+    }
+    
+    // Reset global score & completed flags (kembali ke index)
+    function resetGlobalAndRestart() {
+        if (confirm("Yakin mau reset semua skor dan mulai dari awal? Semua jawaban benar sebelumnya akan hilang.")) {
+            localStorage.setItem(STORAGE_SCORE_KEY, "0");
+            localStorage.removeItem(STORAGE_COMPLETED_KEY);
+            // Kembali ke landing page
+            window.location.href = "index.html";
+        }
+    }
+    
+    // Pengecekan jika soal ini sudah pernah dijawab benar sebelumnya, dan skor sudah ada? 
+    // Kita beri info tapi tetap izinkan menjawab, namun tidak double score. Sudah di handle di handleAnswer.
+    // TAPI untuk mencegah anak bolak-balik dan mendapat poin, kita juga bisa langsung redirect? Tidak perlu, lebih baik beri kesempatan latihan tanpa tambah poin.
+    
+    // event listener
+    document.addEventListener("DOMContentLoaded", () => {
+        initRandomVariant();
+        renderSoal();
+        updateScoreUI();
+        
+        const nextBtn = document.getElementById("nextBtn");
+        nextBtn.addEventListener("click", goToNextSoal);
+        
+        const resetBtn = document.getElementById("resetFromSoalBtn");
+        if (resetBtn) {
+            resetBtn.addEventListener("click", resetGlobalAndRestart);
+        }
+        
+        // kasih tahu jika sudah pernah menyelesaikan soal ini sebelumnya
+        if (isSoalCompleted(1)) {
+            const feedbackDiv = document.getElementById("feedbackArea");
+            feedbackDiv.innerHTML = "📢 Hebat! Soal 1 sudah pernah kamu taklukkan. Kamu bisa coba lagi untuk latihan, tapi tidak nambah poin ya. Klik next untuk lanjut! 📢";
+        }
+        
+        // Tambahan agar audio context bisa diaktifkan dengan user gesture pertama kali
+        const enableAudio = () => {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) {
+                const ctx = new AudioContext();
+                if (ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+            }
+            document.removeEventListener('click', enableAudio);
+            document.removeEventListener('touchstart', enableAudio);
+        };
+        document.addEventListener('click', enableAudio);
+        document.addEventListener('touchstart', enableAudio);
+    });
+</script>
+</body>
+</html>
